@@ -5,5 +5,6 @@ from .models import Note
 # Convert the Note model into JSON
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
-        mode = Note 
+
+        model = Note 
         fields = '__all__'

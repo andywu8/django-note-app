@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'notes_api.apps.NotesApiConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
