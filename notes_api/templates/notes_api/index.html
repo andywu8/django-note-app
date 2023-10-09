@@ -5,7 +5,6 @@
     <ul>
     {% for note in latest_notes_list %}
     <li>
-        {{note.title}}
         <a href="{% url 'notes_api:note-detail' note.id %}">{{ note.title }}</a>
         
     </li>
