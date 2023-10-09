@@ -1,0 +1,19 @@
+{% load static %}
+
+
+{% if latest_notes_list %}
+    <ul>
+    {% for note in latest_notes_list %}
+    <li>
+        {{note.title}}
+        <a href="{% url 'notes_api:note-detail' note.id %}">{{ note.title }}</a>
+        
+    </li>
+
+    
+    <!-- {{ note }} -->
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

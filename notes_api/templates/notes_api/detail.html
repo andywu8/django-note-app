@@ -1,0 +1,35 @@
+{% load static %}
+
+
+{% if note_detail %}
+    <ul>
+        <li>
+            <p>Title:</p>
+            {{note_detail.title}}
+        </li>
+        <li>
+            <p>
+                Body:
+            </p>
+            {{note_detail.body}}
+
+        </li>
+        <li>
+            <p>
+                Created:
+            </p>
+            {{note_detail.created}}
+        </li>
+        <li>
+            <p>
+                Updated:
+            </p>
+            {{note_detail.updated}}
+        </li>
+        
+    
+
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
