@@ -3,6 +3,10 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Note
 from .serializers import NoteSerializer
+from django.shortcuts import get_object_or_404, render
+from .forms import NoteForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # @permission_classes([IsAuthenticated])
 class NoteList(generic.ListView):
@@ -37,3 +41,12 @@ class NoteDetail(generic.DetailView):
 # class NoteDetail(generic.RetrieveUpdateDestroyAPIView):
 #     queryset = Note.objects.all()
 #     serializer_class = NoteSerializer
+
+
+def add_note(request):
+    if request.method=="POST":
+        note = NoteForm(request.POST)
+        # note = NoteForm(request.POST)
+        if note.is_valid():
+            note.save()
+            return HttpResponseRedirect(reverse('notes_api:note_list'))

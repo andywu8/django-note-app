@@ -5,14 +5,19 @@
     <ul>
     {% for note in latest_notes_list %}
     <li>
-        <a href="{% url 'notes_api:note-detail' note.id %}">{{ note.title }}</a>
-        
+        <a href="{% url 'notes_api:note_detail' note.id %}">{{ note.title }}</a>
     </li>
-
-    
-    <!-- {{ note }} -->
     {% endfor %}
     </ul>
+    <form action="{% url 'notes_api:add_note' %}" method="post">
+        {% csrf_token %}
+        <label for="title">title: </label>
+        <input id="title" type="text" name="title">
+        <label for="content">content: </label>
+        <input id="content" type="text" name="content">
+        <input type="submit" value="OK">
+    </form>
+
 {% else %}
-    <p>No polls are available.</p>
+    <p>No notes are available.</p>
 {% endif %}
