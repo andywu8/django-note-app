@@ -1,23 +1,38 @@
 {% load static %}
 
+<html>
+    <header>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-{% if latest_notes_list %}
-    <ul>
-    {% for note in latest_notes_list %}
-    <li>
-        <a href="{% url 'notes_api:note_detail' note.id %}">{{ note.title }}</a>
-    </li>
-    {% endfor %}
-    </ul>
-    <form action="{% url 'notes_api:add_note' %}" method="post">
-        {% csrf_token %}
-        <label for="title">title: </label>
-        <input id="title" type="text" name="title">
-        <label for="content">content: </label>
-        <input id="content" type="text" name="content">
-        <input type="submit" value="OK">
-    </form>
+    </header>
+    <style>
+        body {
+            padding-top: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+    </style>
+    <body>
+        <h1>Notes</h1>
+        {% if latest_notes_list %}
+        <ul class="list-group">
+            {% for note in latest_notes_list %}
+                <li class="list-group-item">
+                    <a href="{% url 'notes_api:note_detail' note.id %}">{{ note.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <form class="form-group" action="{% url 'notes_api:add_note' %}" method="post">
+            {% csrf_token %}
+            <label for="title">Title</label>
+            <input id="title" class="form-control" type="text" name="title">
+            <label for="content">Content</label>
+            <input id="content" class="form-control" type="text" name="content">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        {% else %}
+            <p>No notes are available.</p>
+        {% endif %}
+    </body>
 
-{% else %}
-    <p>No notes are available.</p>
-{% endif %}
+</html>
