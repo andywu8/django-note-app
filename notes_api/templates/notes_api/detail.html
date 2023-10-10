@@ -1,30 +1,33 @@
 {% load static %}
 
+<html>
+    <header>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </header>
+    <body>
 
+    </body>
+</html>
 {% if note_detail %}
-    <ul>
-        <li>
-            <p>Title:</p>
-            {{note_detail.title}}
+    <ul class="list-group">
+        <li class="list-group-item">
+            <h2>Title: {{note_detail.title}}</h2>
         </li>
-        <li>
+        <li class="list-group-item">
             <p>
-                Body:
+                Body: {{note_detail.body}}
             </p>
-            {{note_detail.body}}
-
+            
         </li>
-        <li>
+        <li class="list-group-item">
             <p>
-                Created:
+                Created:{{note_detail.created}}
             </p>
-            {{note_detail.created}}
         </li>
-        <li>
+        <li class="list-group-item">
             <p>
-                Updated:
+                Updated:{{note_detail.updated}}
             </p>
-            {{note_detail.updated}}
         </li>
         
     
