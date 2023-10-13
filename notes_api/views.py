@@ -20,27 +20,12 @@ class NoteList(generic.ListView):
         """
         return Note.objects.all().order_by('-updated')
 
-# class NoteList(generics.ListCreateAPIView):
-#     # context_object_name = "latest_notes_list"
-#     # template_name = "notes_api/index.html"
-#     # def get_queryset(self):
-#     queryset = Note.objects.all().order_by('-updated')
-#     serializer_class = NoteSerializer
-#     # return serializer_class
-
-
-
     # this function will return the notes list 
- 
 # @permission_classes([IsAuthenticated])
 class NoteDetail(generic.DetailView):
     queryset = Note.objects.all()
     context_object_name = 'note_detail'
-    # serializer_class = NoteSerializer
     template_name = "notes_api/detail.html"
-# class NoteDetail(generic.RetrieveUpdateDestroyAPIView):
-#     queryset = Note.objects.all()
-#     serializer_class = NoteSerializer
 
 
 def add_note(request):
