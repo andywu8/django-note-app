@@ -5,34 +5,34 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </header>
     <body>
-
+        {% if note_detail %}
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h2>{{note_detail.title}}</h2>
+                </li>
+                <li class="list-group-item">
+                    <p>
+                        {{note_detail.body}}
+                    </p>
+                </li>
+                <li class="list-group-item">
+                    <b>
+                        Created:
+                    </b>
+                    <p>
+                        {{note_detail.created}}
+                    </p>
+                    <b>
+                        Updated:
+                    </b>
+                    <p>
+                        {{note_detail.updated}}
+                    </p>
+                </li>
+            </ul>
+        {% else %}
+        <p>No polls are available.</p>
     </body>
-</html>
-{% if note_detail %}
-    <ul class="list-group">
-        <li class="list-group-item">
-            <h2>{{note_detail.title}}</h2>
-        </li>
-        <li class="list-group-item">
-            <p>
-                Body: {{note_detail.body}}
-            </p>
-            
-        </li>
-        <li class="list-group-item">
-            <p>
-                Created:{{note_detail.created}}
-            </p>
-        </li>
-        <li class="list-group-item">
-            <p>
-                Updated:{{note_detail.updated}}
-            </p>
-        </li>
-        
-    
-
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
 {% endif %}
+
+</html>

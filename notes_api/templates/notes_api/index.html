@@ -19,6 +19,10 @@
                 <li class="list-group-item">
                     <a href="{% url 'notes_api:note_detail' note.id %}">{{ note.title }}</a>
                 </li>
+                <form class="form-group" action="{% url 'notes_api:edit_note' note.id%}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
             {% endfor %}
         </ul>
         <form class="form-group" action="{% url 'notes_api:add_note' %}" method="post">
@@ -27,6 +31,7 @@
             <input id="title" class="form-control" type="text" name="title">
             <label for="body">Body</label>
             <input id="body" class="form-control" type="text" name="body">
+            <br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         {% else %}
