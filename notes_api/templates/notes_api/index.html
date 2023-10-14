@@ -1,3 +1,5 @@
+{% load socialaccount %}
+
 {% load static %}
 
 <html>
@@ -12,6 +14,12 @@
         }
     </style>
     <body>
+        {% if user.is_authenticated %}
+        <p>Welcome, You are logged in as {{ user.username }}</p>
+        <a href="{% url 'notes_api:logout' %}">Logout</a>
+        {% else %}
+        <a href="{% provider_login_url 'google' %}">Login With Google</a>
+        {% endif %}
         <h1>Notes</h1>
         {% if latest_notes_list %}
         <ul class="list-group">
