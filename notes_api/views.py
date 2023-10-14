@@ -46,3 +46,8 @@ def add_note(request):
         if note.is_valid():
             note.save()
             return HttpResponseRedirect(reverse('notes_api:note_list'))
+
+def delete_note(request, pk):
+    note = get_object_or_404(Note, pk=pk)
+    note.delete()
+    return HttpResponseRedirect(reverse('notes_api:note_list'))
