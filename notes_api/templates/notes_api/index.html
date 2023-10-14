@@ -37,6 +37,9 @@
                 </li>
             {% endfor %}
         </ul>
+        {% else %}
+            <p>No notes are available.</p>
+        {% endif %}
         <form class="form-group" action="{% url 'notes_api:add_note' %}" method="post">
             {% csrf_token %}
             <label for="title">Title</label>
@@ -46,9 +49,6 @@
             <br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        {% else %}
-            <p>No notes are available.</p>
-        {% endif %}
     </body>
 
 </html>
