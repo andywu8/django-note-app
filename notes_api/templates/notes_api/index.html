@@ -15,40 +15,42 @@
     </style>
     <body>
         {% if user.is_authenticated %}
-        <p>Welcome, You are logged in as {{ user.username }}</p>
-        <a href="{% url 'notes_api:logout' %}">Logout</a>
+            <p>Welcome, You are logged in as {{ user.username }}</p>
+            <a href="{% url 'logout' %}">Logout</a>
+            <div>
+                <h1>Notes</h1>
+                {% if latest_notes_list %}
+                <ul class="list-group">
+                    {% for note in latest_notes_list %}
+                        <li class="list-group-item">
+                            <a href="{% url 'notes_api:note_detail' note.id %}"  style="display: inline-block; margin-right: 50px;">{{ note.title }}</a>
+                            <form class="form-group" action="{% url 'notes_api:edit_note' note.id%}"  style="display: inline-block;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
+                            <form class="form-group" action="{% url 'notes_api:delete_note' note.id%}"  style="display: inline-block;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>No notes are available.</p>
+                {% endif %}
+                <form class="form-group" action="{% url 'notes_api:add_note' %}" method="post">
+                    {% csrf_token %}
+                    <label for="title">Title</label>
+                    <input id="title" class="form-control" type="text" name="title">
+                    <label for="body">Body</label>
+                    <input id="body" class="form-control" type="text" name="body">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         {% else %}
-        <a href="{% provider_login_url 'google' %}">Login With Google</a>
+            <a href="{% url 'login' %}">Login</a>
         {% endif %}
-        <h1>Notes</h1>
-        {% if latest_notes_list %}
-        <ul class="list-group">
-            {% for note in latest_notes_list %}
-                <li class="list-group-item">
-                    <a href="{% url 'notes_api:note_detail' note.id %}"  style="display: inline-block; margin-right: 50px;">{{ note.title }}</a>
-                    <form class="form-group" action="{% url 'notes_api:edit_note' note.id%}"  style="display: inline-block;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">Edit</button>
-                    </form>
-                    <form class="form-group" action="{% url 'notes_api:delete_note' note.id%}"  style="display: inline-block;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-            <p>No notes are available.</p>
-        {% endif %}
-        <form class="form-group" action="{% url 'notes_api:add_note' %}" method="post">
-            {% csrf_token %}
-            <label for="title">Title</label>
-            <input id="title" class="form-control" type="text" name="title">
-            <label for="body">Body</label>
-            <input id="body" class="form-control" type="text" name="body">
-            <br>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
     </body>
 
 </html>

@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from notes_api import views
 urlpatterns = [
-
-    path('', views.NoteList.as_view(), name='note-list'),
+    path('', views.NoteList.as_view(), name='home'),
+    path("accounts/", include("django.contrib.auth.urls")),  # new
     path('admin/', admin.site.urls),
     path('notes_api/', include('notes_api.urls'))
 ]

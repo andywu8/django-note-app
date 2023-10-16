@@ -38,16 +38,16 @@ def update_note(request, pk):
         note = NoteForm(request.POST)
         if note.is_valid():
             note.save()
-            return HttpResponseRedirect(reverse('notes_api:note_list'))
+            return HttpResponseRedirect(reverse('notes_api:home'))
 
 def add_note(request):
     if request.method=="POST":
         note = NoteForm(request.POST)
         if note.is_valid():
             note.save()
-            return HttpResponseRedirect(reverse('notes_api:note_list'))
+            return HttpResponseRedirect(reverse('notes_api:home'))
 
 def delete_note(request, pk):
     note = get_object_or_404(Note, pk=pk)
     note.delete()
-    return HttpResponseRedirect(reverse('notes_api:note_list'))
+    return HttpResponseRedirect(reverse('notes_api:home'))
