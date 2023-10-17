@@ -20,7 +20,11 @@ class NoteList(generic.ListView):
         Return the last five published questions (not including those set to be
         published in the future).
         """
-        return Note.objects.all().order_by('-updated')
+        # this gets all notes
+        # return Note.objects.all().order_by('-updated')
+        user_notes = Note.objects.filter(user=self.request.user)
+        return user_notes
+        
 
     # this function will return the notes list 
 # @permission_classes([IsAuthenticated])
@@ -44,9 +48,10 @@ def update_note(request, pk):
 
 def add_note(request):
     if request.method=="POST":
-        note = NoteForm(request.POST)
-        print("note", note)
-        if note.is_valid():
+        form = NoteForm(request.POST)
+        # print("note", note)
+        if form.is_valid():
+            note = form.save(commit=False)
             note.user = request.user
             # print("request.user", request.user)
             note.save()
