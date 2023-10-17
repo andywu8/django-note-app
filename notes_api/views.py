@@ -8,6 +8,8 @@ from .forms import NoteForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+
+
 # @permission_classes([IsAuthenticated])
 class NoteList(generic.ListView):
     template_name = "notes_api/index.html"
@@ -51,3 +53,4 @@ def delete_note(request, pk):
     note = get_object_or_404(Note, pk=pk)
     note.delete()
     return HttpResponseRedirect(reverse('notes_api:home'))
+

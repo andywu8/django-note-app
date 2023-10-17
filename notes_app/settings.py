@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'notes_api.apps.NotesApiConfig',
     'rest_framework',
+    'accounts',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

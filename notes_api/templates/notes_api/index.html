@@ -49,7 +49,13 @@
                 </form>
             </div>
         {% else %}
-            <a href="{% url 'login' %}">Login</a>
+            <form class="form-group" action="{% url 'login' %}">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <form class="form-group" action="{% url 'signup' %}">
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+
         {% endif %}
     </body>
 
