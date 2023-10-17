@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, render
 from .forms import NoteForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from django.contrib.auth.decorators import login_required
 
 
 # @permission_classes([IsAuthenticated])
@@ -45,8 +45,12 @@ def update_note(request, pk):
 def add_note(request):
     if request.method=="POST":
         note = NoteForm(request.POST)
+        print("note", note)
         if note.is_valid():
+            note.user = request.user
+            # print("request.user", request.user)
             note.save()
+            request.user.note.add(note)
             return HttpResponseRedirect(reverse('notes_api:home'))
 
 def delete_note(request, pk):
