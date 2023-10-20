@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social',
     'notes_api.apps.NotesApiConfig',
     'rest_framework',
     'accounts',

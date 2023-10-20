@@ -20,8 +20,9 @@ from notes_api import views
 
 urlpatterns = [
     path('', views.NoteList.as_view(), name='home'),
-    path("accounts/", include("accounts.urls")),  # new
-    path("accounts/", include("django.contrib.auth.urls")),  # new
+    path('notes_api/', include('notes_api.urls')),
+    path('social/', include('social.urls')),
+    path("accounts/", include("accounts.urls")),  
+    path("accounts/", include("django.contrib.auth.urls")),  
     path('admin/', admin.site.urls),
-    path('notes_api/', include('notes_api.urls'))
 ]
