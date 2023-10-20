@@ -32,7 +32,7 @@
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <form class="form-group" action="{% url 'notes_api:delete_note' note.id%}"  style="display: inline-block;">
+                            <form class="form-group" action="{% url 'social:home' %}"  style="display: inline-block;">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-success">Share</button>
                             </form>
