@@ -25,9 +25,11 @@
                             <p>
                                 {{ cur_user.username }}
                             </p>   
-                            <form>
+                            <form class="form-group" action="{% url 'social:home' %}"  style="display: inline-block;">
+                                {% csrf_token %}
                                 <button type="submit" class="btn btn-success">Follow</button>
                             </form>
+
                         </li>
                     {% endif %}
                 {% endfor %}
