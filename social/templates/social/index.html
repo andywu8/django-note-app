@@ -22,7 +22,7 @@
                 {% for cur_user in all_users %}
                     {% if cur_user.username != user.username %}
                         <li class="list-group-item">
-                            <p>
+                            <p style="display: inline-block; margin-right: 50px;">
                                 {{ cur_user.username }}
                             </p>   
                             <form class="form-group" action="{% url 'social:home' %}"  style="display: inline-block;">
