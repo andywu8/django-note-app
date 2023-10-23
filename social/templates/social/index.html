@@ -14,6 +14,30 @@
         <h1>
             Social Page
         </h1>
+        <p>
+            Welcome, You are logged in as {{ user.username }}
+        </p>
+        {% if all_users %}
+            <ul class="list-group">
+                {% for cur_user in all_users %}
+                    {% if cur_user.username != user.username %}
+                        <li class="list-group-item">
+                            <p>
+                                {{ cur_user.username }}
+                            </p>   
+                            <form>
+                                <button type="submit" class="btn btn-success">Follow</button>
+                            </form>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No users are available.</p>
+        {% endif %}
+
+            
+        
     </body>
 
 </html>
